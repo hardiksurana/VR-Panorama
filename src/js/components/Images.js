@@ -12,7 +12,7 @@ export default class Images extends React.Component {
     return (
         <Scene>
             <a-assets>
-                <img id="panorama" src="../../../images/panoramas-landscape.jpg" />
+                <img id="panorama" src={this.props.src} crossOrigin="anonymous"/>
             </a-assets>
             <Entity
                 primitive="a-sky"
