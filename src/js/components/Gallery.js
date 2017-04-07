@@ -1,9 +1,11 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Images from "./Images";
 
 export default class Gallery extends React.Component {
+    // constructor initialises the state
     constructor() {
         super();
         this.state = {
@@ -11,10 +13,14 @@ export default class Gallery extends React.Component {
         };
     }
 
+    // images are fetched from the API before rendering
     componentWillMount() {
         fetch(
             "https://demo0813639.mockable.io/getPanos", {
-                method: 'get'
+                method: 'GET',
+                mode: 'cors',
+                cache: 'default',
+                credentials: 'omit'
             }
         ).then(
             response => {
@@ -29,10 +35,12 @@ export default class Gallery extends React.Component {
         );
     }
 
+    // renders the new VR Panorama with the clicked image
     handleClick(src, e) {
         ReactDOM.render(<Images src={src}/>, app);
     }
 
+    // renders the images with the data received from the API
     render() {
         var id = 0;
         var image_tag = this.state.images.map(
